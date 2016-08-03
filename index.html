@@ -85,10 +85,55 @@ body {
 canvas {
   background-color: rgba(0, 0, 0, 0);
 }
+
 </style>
+
+<script language="JavaScript">
+    downImage = new Image();
+    downImage.src = "./res/backBtn_selected.png";
+    normalImage = new Image();
+    normalImage.src = "./res/backBtn.png";
+
+    function handleMDown()
+    {
+        document.images["backBtn"].src = downImage.src;
+        window.opener = window; parent.window.close();
+        return true;
+    }
+    function handleMUp()
+    {
+        document.images["backBtn"].src= normalImage.src;
+        return true;
+    }
+
+</script>
+
+<style type="text/css">
+    #gameCanvas{
+        position:fixed;
+        top:0px;
+        left:0px;
+        z-index:0;
+    }
+    #backBtn{
+        position:fixed;
+        top:400px;
+        left:950px;
+        z-index:1;
+        visibility: hidden;
+    }
+</style>
+
 </head>
 <body>
 <script src="res/loading.js"></script>
+
+<a href="#"
+   onMouseDown="return handleMDown()"
+   onMouseUp="return handleMUp()">
+    <img id="backBtn" name="backBtn" src="./res/backBtn.png" width="48" height="48" border="0"
+         alt="javascript button"></a>
+
 <canvas id="gameCanvas" width="480" height="720"></canvas>
 <script>
     (function () {
